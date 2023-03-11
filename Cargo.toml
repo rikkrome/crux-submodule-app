@@ -1,0 +1,15 @@
+[workspace]
+members = ["shared", "shared_types"]
+
+[workspace.package]
+authors = ["Ricky Romero"]
+edition = "2021"
+repository = "https://github.com/romerorickyio/crux-submodule-app"
+license = "MIT"
+keywords = ["crux"]
+rust-version = "1.66"
+
+[workspace.dependencies]
+anyhow = "1.0.69"
+serde = "1.0.152"
+
