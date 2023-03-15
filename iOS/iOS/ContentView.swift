@@ -11,6 +11,10 @@ struct ContentView: View {
     var body: some View {
         VStack {
             TabView {
+                ChatListView()
+                    .tabItem {
+                        Label("", systemImage: "message")
+                    }
                 HomeView()
                     .tabItem {
                         Label("", systemImage: "house.fill")

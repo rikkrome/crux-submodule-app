@@ -64,7 +64,8 @@ impl App for AppRoot {
                 model.profile.user_name = name.to_string();
             }
             Event::InitViewModel(view_model) => {
-                model.profile.user_name = view_model.profile.user_name;
+                model.profile = view_model.profile;
+                model.settings = view_model.settings;
             }
         }
         caps.render.render();
