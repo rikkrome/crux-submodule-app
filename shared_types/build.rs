@@ -27,6 +27,6 @@ fn register_types(gen: &mut TypeGen) -> Result<()> {
     gen.register_type::<Effect>()?;
     gen.register_type::<Event>()?;
     gen.register_type::<ViewModel>()?;
-
+    // gen.register_type::<Model>()?;
     Ok(())
 }

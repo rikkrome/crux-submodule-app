@@ -19,6 +19,8 @@
 		AF4EE15929BC6AD100D54F79 /* libshared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AF4EE15829BC6AD100D54F79 /* libshared.a */; };
 		AF4EE15C29BC6B0A00D54F79 /* Serde in Frameworks */ = {isa = PBXBuildFile; productRef = AF4EE15B29BC6B0A00D54F79 /* Serde */; };
 		AF4EE15E29BC6BB300D54F79 /* shared_types.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4EE15D29BC6BB300D54F79 /* shared_types.swift */; };
+		AF4EE16129BE952D00D54F79 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4EE16029BE952D00D54F79 /* HomeView.swift */; };
+		AF4EE16429BE972F00D54F79 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4EE16329BE972F00D54F79 /* ProfileView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -72,6 +74,8 @@
 		AF4EE15429BC68E200D54F79 /* compile-library.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "compile-library.sh"; sourceTree = "<group>"; };
 		AF4EE15829BC6AD100D54F79 /* libshared.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libshared.a; path = ../target/debug/libshared.a; sourceTree = "<group>"; };
 		AF4EE15D29BC6BB300D54F79 /* shared_types.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = shared_types.swift; path = ../shared_types/generated/swift/shared_types.swift; sourceTree = "<group>"; };
+		AF4EE16029BE952D00D54F79 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		AF4EE16329BE972F00D54F79 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +132,8 @@
 		AF4EE12529BC656100D54F79 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				AF4EE16229BE971900D54F79 /* Profile */,
+				AF4EE15F29BE829A00D54F79 /* Home */,
 				AF4EE12629BC656100D54F79 /* iOSApp.swift */,
 				AF4EE12829BC656100D54F79 /* ContentView.swift */,
 				AF4EE12A29BC656300D54F79 /* Assets.xcassets */,
@@ -175,6 +181,22 @@
 				AF4EE15829BC6AD100D54F79 /* libshared.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AF4EE15F29BE829A00D54F79 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				AF4EE16029BE952D00D54F79 /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		AF4EE16229BE971900D54F79 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				AF4EE16329BE972F00D54F79 /* ProfileView.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -341,6 +363,8 @@
 				AF4EE15E29BC6BB300D54F79 /* shared_types.swift in Sources */,
 				AF4EE15229BC66EF00D54F79 /* shared.udl in Sources */,
 				AF4EE12929BC656100D54F79 /* ContentView.swift in Sources */,
+				AF4EE16129BE952D00D54F79 /* HomeView.swift in Sources */,
+				AF4EE16429BE972F00D54F79 /* ProfileView.swift in Sources */,
 				AF4EE12729BC656100D54F79 /* iOSApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

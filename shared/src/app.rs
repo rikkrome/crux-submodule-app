@@ -4,15 +4,34 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize)]
 pub enum Event {
-    None,
+    // events from the shell
+    UpdateScheme(String),
+    UpdateName(String),
 }
 
-#[derive(Default)]
-pub struct Model;
+#[derive(Serialize, Deserialize, Default, Debug, PartialEq, Eq)]
+pub struct SettingsScheme {
+    initialized: bool,
+    selected: String, // light / dark
+    updated_at: i64,
+}
+
+#[derive(Serialize, Deserialize, Default, Debug, PartialEq, Eq)]
+pub struct Settings {
+    scheme: SettingsScheme,
+    updated_at: i64,
+}
+
+#[derive(Default, Serialize, Deserialize)]
+pub struct Model {
+    user_name: String,
+    settings: Settings,
+}
 
 #[derive(Serialize, Deserialize)]
 pub struct ViewModel {
-    data: String,
+    user_name: String,
+    scheme: String,
 }
 
 #[derive(Effect)]
@@ -30,13 +49,23 @@ impl App for AppRoot {
     type ViewModel = ViewModel;
     type Capabilities = Capabilities;
 
-    fn update(&self, _event: Self::Event, _model: &mut Self::Model, caps: &Self::Capabilities) {
+    fn update(&self, msg: Self::Event, model: &mut Self::Model, caps: &Self::Capabilities) {
+        match msg {
+            Event::UpdateScheme(selected) => {
+                model.settings.scheme.initialized = true;
+                model.settings.scheme.selected = selected;
+            }
+            Event::UpdateName(name) => {
+                model.user_name = name.to_string();
+            }
+        }
         caps.render.render();
     }
 
-    fn view(&self, _model: &Self::Model) -> Self::ViewModel {
+    fn view(&self, model: &Self::Model) -> Self::ViewModel {
         ViewModel {
-            data: "Hello World".to_string(),
+            user_name: model.user_name.to_string(),
+            scheme: model.settings.scheme.selected.to_string(),
         }
     }
 }
@@ -47,20 +76,25 @@ mod tests {
     use crux_core::{render::RenderOperation, testing::AppTester};
 
     #[test]
-    fn hello_says_hello_world() {
+    fn app_root() {
         let app = AppTester::<AppRoot, _>::default();
         let mut model = Model::default();
 
         // Call 'update' and request effects
-        let update = app.update(Event::None, &mut model);
+        let update = app.update(Event::Format, &mut model);
 
         // Check update asked us to `Render`
         let actual_effect = &update.effects[0];
         let expected_effect = &Effect::Render(RenderOperation);
         assert_eq!(actual_effect, expected_effect);
 
+        let actual = model.settings.scheme.initialized;
+        let expected = true;
+        assert_eq!(actual, expected);
+
         // Make sure the view matches our expectations
-        let actual_view = &app.view(&model).data;
+        model.user_name = "Hello World".to_string();
+        let actual_view = &app.view(&model).user_name;
         let expected_view = "Hello World";
         assert_eq!(actual_view, expected_view);
     }
