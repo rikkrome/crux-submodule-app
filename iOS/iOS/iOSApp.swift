@@ -7,36 +7,6 @@
 
 import SwiftUI
 
-enum Update {
-    case event(Event)
-}
-
-@MainActor
-class Model: ObservableObject {
-    @Published var view = ViewModel(user_name: "", scheme: "" )
-    
-    init() {
-        update(msg: .event(.updateName("Ricky")))
-        update(msg: .event(.updateScheme("Light")))
-    }
-
-    
-    func update(msg: Update) {
-        let reqs: [Request]
-        switch msg {
-            case let .event(m):
-                reqs = try! [Request].bcsDeserialize(input: iOS.processEvent(try! m.bcsSerialize()))
-        }
-        
-        for req in reqs {
-            switch req.effect {
-                case .render: view = try! ViewModel.bcsDeserialize(input: iOS.view())
-            }
-        }
-    }
-
-}
-
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         print("Your code here")
@@ -60,11 +30,10 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct iOSApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    @StateObject var model = Model()
-
+    @StateObject private var model = Model()
     var body: some Scene {
         WindowGroup {
-            ContentView(model: model).environmentObject(model)
+            ContentView().environmentObject(model)
         }
     }
 }

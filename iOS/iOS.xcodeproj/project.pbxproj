@@ -21,6 +21,10 @@
 		AF4EE15E29BC6BB300D54F79 /* shared_types.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4EE15D29BC6BB300D54F79 /* shared_types.swift */; };
 		AF4EE16129BE952D00D54F79 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4EE16029BE952D00D54F79 /* HomeView.swift */; };
 		AF4EE16429BE972F00D54F79 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4EE16329BE972F00D54F79 /* ProfileView.swift */; };
+		AF4EE16729C17A1A00D54F79 /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4EE16629C17A1A00D54F79 /* ChatListView.swift */; };
+		AF4EE16929C17A8C00D54F79 /* ChatListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4EE16829C17A8C00D54F79 /* ChatListRow.swift */; };
+		AF4EE16D29C1816800D54F79 /* CircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4EE16C29C1816800D54F79 /* CircleImage.swift */; };
+		AF4EE17029C1929000D54F79 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4EE16F29C1928F00D54F79 /* Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -76,6 +80,10 @@
 		AF4EE15D29BC6BB300D54F79 /* shared_types.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = shared_types.swift; path = ../shared_types/generated/swift/shared_types.swift; sourceTree = "<group>"; };
 		AF4EE16029BE952D00D54F79 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		AF4EE16329BE972F00D54F79 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		AF4EE16629C17A1A00D54F79 /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListView.swift; sourceTree = "<group>"; };
+		AF4EE16829C17A8C00D54F79 /* ChatListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListRow.swift; sourceTree = "<group>"; };
+		AF4EE16C29C1816800D54F79 /* CircleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImage.swift; sourceTree = "<group>"; };
+		AF4EE16F29C1928F00D54F79 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,8 +140,9 @@
 		AF4EE12529BC656100D54F79 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				AF4EE16229BE971900D54F79 /* Profile */,
-				AF4EE15F29BE829A00D54F79 /* Home */,
+				AF4EE16E29C191DF00D54F79 /* Model */,
+				AF4EE16B29C180A000D54F79 /* Views */,
+				AF4EE16A29C17F6100D54F79 /* Components */,
 				AF4EE12629BC656100D54F79 /* iOSApp.swift */,
 				AF4EE12829BC656100D54F79 /* ContentView.swift */,
 				AF4EE12A29BC656300D54F79 /* Assets.xcassets */,
@@ -197,6 +206,41 @@
 				AF4EE16329BE972F00D54F79 /* ProfileView.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		AF4EE16529C179E300D54F79 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				AF4EE16629C17A1A00D54F79 /* ChatListView.swift */,
+				AF4EE16829C17A8C00D54F79 /* ChatListRow.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		AF4EE16A29C17F6100D54F79 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				AF4EE16C29C1816800D54F79 /* CircleImage.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		AF4EE16B29C180A000D54F79 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AF4EE16529C179E300D54F79 /* Chat */,
+				AF4EE16229BE971900D54F79 /* Profile */,
+				AF4EE15F29BE829A00D54F79 /* Home */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AF4EE16E29C191DF00D54F79 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AF4EE16F29C1928F00D54F79 /* Model.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -360,9 +404,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF4EE16929C17A8C00D54F79 /* ChatListRow.swift in Sources */,
 				AF4EE15E29BC6BB300D54F79 /* shared_types.swift in Sources */,
 				AF4EE15229BC66EF00D54F79 /* shared.udl in Sources */,
 				AF4EE12929BC656100D54F79 /* ContentView.swift in Sources */,
+				AF4EE16729C17A1A00D54F79 /* ChatListView.swift in Sources */,
+				AF4EE17029C1929000D54F79 /* Model.swift in Sources */,
+				AF4EE16D29C1816800D54F79 /* CircleImage.swift in Sources */,
 				AF4EE16129BE952D00D54F79 /* HomeView.swift in Sources */,
 				AF4EE16429BE972F00D54F79 /* ProfileView.swift in Sources */,
 				AF4EE12729BC656100D54F79 /* iOSApp.swift in Sources */,

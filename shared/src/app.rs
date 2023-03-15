@@ -2,36 +2,42 @@ use crux_core::{render::Render, App};
 use crux_macros::Effect;
 use serde::{Deserialize, Serialize};
 
-#[derive(Serialize, Deserialize)]
-pub enum Event {
-    // events from the shell
-    UpdateScheme(String),
-    UpdateName(String),
-}
-
-#[derive(Serialize, Deserialize, Default, Debug, PartialEq, Eq)]
-pub struct SettingsScheme {
-    initialized: bool,
-    selected: String, // light / dark
-    updated_at: i64,
-}
-
-#[derive(Serialize, Deserialize, Default, Debug, PartialEq, Eq)]
+#[derive(Serialize, Deserialize, Default, Debug, Clone)]
 pub struct Settings {
-    scheme: SettingsScheme,
-    updated_at: i64,
+    scheme: String,
 }
 
+#[derive(Serialize, Deserialize, Debug, Default, Clone)]
+pub struct Profile {
+    user_name: String,
+}
 #[derive(Default, Serialize, Deserialize)]
 pub struct Model {
-    user_name: String,
+    profile: Profile,
     settings: Settings,
 }
 
 #[derive(Serialize, Deserialize)]
 pub struct ViewModel {
-    user_name: String,
-    scheme: String,
+    profile: Profile,
+    settings: Settings,
+}
+
+impl From<&Model> for ViewModel {
+    fn from(model: &Model) -> Self {
+        ViewModel {
+            profile: model.profile.clone(),
+            settings: model.settings.clone(),
+        }
+    }
+}
+
+#[derive(Serialize, Deserialize)]
+pub enum Event {
+    // events from the shell
+    UpdateScheme(String),
+    UpdateName(String),
+    InitViewModel(ViewModel),
 }
 
 #[derive(Effect)]
@@ -51,22 +57,25 @@ impl App for AppRoot {
 
     fn update(&self, msg: Self::Event, model: &mut Self::Model, caps: &Self::Capabilities) {
         match msg {
-            Event::UpdateScheme(selected) => {
-                model.settings.scheme.initialized = true;
-                model.settings.scheme.selected = selected;
+            Event::UpdateScheme(scheme) => {
+                model.settings.scheme = scheme;
             }
             Event::UpdateName(name) => {
-                model.user_name = name.to_string();
+                model.profile.user_name = name.to_string();
+            }
+            Event::InitViewModel(view_model) => {
+                model.profile.user_name = view_model.profile.user_name;
             }
         }
         caps.render.render();
     }
 
     fn view(&self, model: &Self::Model) -> Self::ViewModel {
-        ViewModel {
-            user_name: model.user_name.to_string(),
-            scheme: model.settings.scheme.selected.to_string(),
-        }
+        model.into()
+        // ViewModel {
+        //     scheme: model.settings.scheme.selected.to_string(),
+        //     profile: model.profile.clone(),
+        // }
     }
 }
 
@@ -81,21 +90,35 @@ mod tests {
         let mut model = Model::default();
 
         // Call 'update' and request effects
-        let update = app.update(Event::Format, &mut model);
+        let update = app.update(Event::UpdateScheme("Dark".to_string()), &mut model);
 
         // Check update asked us to `Render`
         let actual_effect = &update.effects[0];
         let expected_effect = &Effect::Render(RenderOperation);
         assert_eq!(actual_effect, expected_effect);
 
-        let actual = model.settings.scheme.initialized;
-        let expected = true;
-        assert_eq!(actual, expected);
-
         // Make sure the view matches our expectations
-        model.user_name = "Hello World".to_string();
-        let actual_view = &app.view(&model).user_name;
-        let expected_view = "Hello World";
+        model.profile.user_name = "Ricky".to_string();
+        let actual_view = &app.view(&model).profile.user_name;
+        let expected_view = "Ricky";
         assert_eq!(actual_view, expected_view);
+    }
+
+    #[test]
+    fn app_root_scheme() {
+        let app = AppTester::<AppRoot, _>::default();
+        let mut model = Model::default();
+
+        // Call 'update' and request effects
+        let update = app.update(Event::UpdateScheme("Dark".to_string()), &mut model);
+
+        // Check update asked us to `Render`
+        let actual_effect = &update.effects[0];
+        let expected_effect = &Effect::Render(RenderOperation);
+        assert_eq!(actual_effect, expected_effect);
+
+        let actual_view = app.view(&model).settings.scheme;
+        let expected = "Dark".to_string();
+        assert_eq!(actual_view, expected);
     }
 }
