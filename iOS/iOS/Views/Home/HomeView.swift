@@ -12,20 +12,15 @@ struct HomeView: View {
         model.view.settings.scheme == "Dark" ? .white : .black
     }
     var body: some View {
-        ZStack{
-            Color(model.view.settings.scheme == "Dark" ? .black : .white)
-            VStack {
-                Text("Hi \(model.view.profile.user_name.capitalized)")
-                    .foregroundColor(text_color)
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .padding()
-                Text("scheme: \(model.view.settings.scheme.capitalized)").foregroundColor(text_color)
-                
-            }
+                VStack {
+                    Text("First View")
+                        .font(.headline)
+                        .foregroundColor(text_color)
+                }
+                .navigationTitle("Home")
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
+                .background(model.view.settings.scheme == "Dark" ? .black : .white)
         }
-        .ignoresSafeArea()
-    }
     
 }
 

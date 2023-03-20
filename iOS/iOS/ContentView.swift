@@ -7,22 +7,38 @@
 
 import SwiftUI
 
+
+enum Tab: Int {
+       case ChatListView, HomeView, ProfileView
+}
+
 struct ContentView: View {
+    @EnvironmentObject var model: Model
+    @State private var selection = Tab.ChatListView
+    @State private var tabBarVisible = true
+    @State private var height = CGFloat.zero
+
     var body: some View {
-        VStack {
-            TabView {
-                ChatListView()
-                    .tabItem {
-                        Label("", systemImage: "message")
-                    }
-                HomeView()
-                    .tabItem {
-                        Label("", systemImage: "house.fill")
-                    }
-                ProfileView()
-                    .tabItem {
-                        Label("", systemImage: "person")
-                    }
+        ZStack {
+            NavigationStack {
+                TabView(selection: $selection) {
+                    ChatListView()
+                        .tabItem {
+                            Label("", systemImage: "message")
+                        }.tag(Tab.ChatListView)
+                    HomeView()
+                        .tabItem {
+                            Label("", systemImage: "house.fill")
+                        }.tag(Tab.HomeView)
+                    ProfileView()
+                        .tabItem {
+                            Label("", systemImage: "person")
+                        }.tag(Tab.ProfileView)
+                }
+                .accentColor(.accentColor)
+                .navigationDestination(for: MessagePreview.self) { message in
+                    ChatRoomView()
+                }
             }
         }
     }

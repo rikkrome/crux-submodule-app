@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C23FD7029C28613008BA21F /* ChatRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C23FD6F29C28613008BA21F /* ChatRoomView.swift */; };
+		2C23FD7229C28712008BA21F /* Templete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C23FD7129C28712008BA21F /* Templete.swift */; };
 		AF4EE12729BC656100D54F79 /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4EE12629BC656100D54F79 /* iOSApp.swift */; };
 		AF4EE12929BC656100D54F79 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4EE12829BC656100D54F79 /* ContentView.swift */; };
 		AF4EE12B29BC656300D54F79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF4EE12A29BC656300D54F79 /* Assets.xcassets */; };
@@ -64,6 +66,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2C23FD6F29C28613008BA21F /* ChatRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomView.swift; sourceTree = "<group>"; };
+		2C23FD7129C28712008BA21F /* Templete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Templete.swift; sourceTree = "<group>"; };
 		AF4EE12329BC656100D54F79 /* iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF4EE12629BC656100D54F79 /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
 		AF4EE12829BC656100D54F79 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -213,6 +217,7 @@
 			children = (
 				AF4EE16629C17A1A00D54F79 /* ChatListView.swift */,
 				AF4EE16829C17A8C00D54F79 /* ChatListRow.swift */,
+				2C23FD6F29C28613008BA21F /* ChatRoomView.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -231,6 +236,7 @@
 				AF4EE16529C179E300D54F79 /* Chat */,
 				AF4EE16229BE971900D54F79 /* Profile */,
 				AF4EE15F29BE829A00D54F79 /* Home */,
+				2C23FD7129C28712008BA21F /* Templete.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -405,6 +411,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF4EE16929C17A8C00D54F79 /* ChatListRow.swift in Sources */,
+				2C23FD7229C28712008BA21F /* Templete.swift in Sources */,
 				AF4EE15E29BC6BB300D54F79 /* shared_types.swift in Sources */,
 				AF4EE15229BC66EF00D54F79 /* shared.udl in Sources */,
 				AF4EE12929BC656100D54F79 /* ContentView.swift in Sources */,
@@ -412,6 +419,7 @@
 				AF4EE17029C1929000D54F79 /* Model.swift in Sources */,
 				AF4EE16D29C1816800D54F79 /* CircleImage.swift in Sources */,
 				AF4EE16129BE952D00D54F79 /* HomeView.swift in Sources */,
+				2C23FD7029C28613008BA21F /* ChatRoomView.swift in Sources */,
 				AF4EE16429BE972F00D54F79 /* ProfileView.swift in Sources */,
 				AF4EE12729BC656100D54F79 /* iOSApp.swift in Sources */,
 			);
@@ -572,7 +580,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"iOS/Preview Content\"";
-				DEVELOPMENT_TEAM = BKAZC6A6AQ;
+				DEVELOPMENT_TEAM = J4699X3C8E;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -606,7 +614,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"iOS/Preview Content\"";
-				DEVELOPMENT_TEAM = BKAZC6A6AQ;
+				DEVELOPMENT_TEAM = J4699X3C8E;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
