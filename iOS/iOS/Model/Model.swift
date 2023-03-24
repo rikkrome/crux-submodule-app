@@ -6,6 +6,10 @@
 //
 import SwiftUI
 
+//enum Tab: Int {
+//    case ChatListView, HomeView, ProfileView
+//}
+
 enum Update {
     case event(Event)
 }
@@ -13,6 +17,7 @@ enum Update {
 @MainActor
 class Model: ObservableObject {
     @Published var view = ViewModel(profile: Profile(user_name: "Ricky"), settings: Settings(scheme: "Light"))
+//    @Published var tabSelection = Tab.ChatListView
 
     init() {
         update(msg: .event(.initViewModel(view)))

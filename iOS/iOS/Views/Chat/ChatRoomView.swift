@@ -57,12 +57,8 @@ struct ChatRoomView: View {
         Message(text: "That sounds interesting! Good luck!", isSender: true)
     ]
     
-    var text_color: Color {
-        model.view.settings.scheme == "Dark" ? .white : .black
-    }
     var body: some View {
         ZStack{
-            Color(model.view.settings.scheme == "Dark" ? .black : .white)
             VStack {
                 // MARK: List
                 List(messages) { message in

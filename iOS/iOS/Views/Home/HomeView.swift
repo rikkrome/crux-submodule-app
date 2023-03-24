@@ -8,24 +8,38 @@ import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject var model: Model
-    var text_color: Color {
-        model.view.settings.scheme == "Dark" ? .white : .black
-    }
+    @EnvironmentObject private var tabController: TabController
+
     var body: some View {
                 VStack {
-                    Text("First View")
+                    HStack{
+                        Button(action: {
+                            tabController.open(.ProfileView)
+                        }) {Label("", systemImage: "person.crop.circle.fill")}
+                        Spacer()
+                        Text("Home")
+                        Spacer()
+                        Button(action: {
+                            tabController.open(.ChatListView)
+                        }) {Label("", systemImage: "message.fill")}
+                    }
+                    .padding()
+                    Spacer()
+                    Text("Home")
                         .font(.headline)
-                        .foregroundColor(text_color)
+                    Spacer()
                 }
-                .navigationTitle("Home")
-                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
-                .background(model.view.settings.scheme == "Dark" ? .black : .white)
         }
     
 }
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView().environmentObject(Model())
+        NavigationStack {
+            TabView {
+                HomeView().environmentObject(Model())
+            }
+            .tabViewStyle(.page(indexDisplayMode: .always))
+        }
     }
 }

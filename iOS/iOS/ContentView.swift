@@ -7,38 +7,40 @@
 
 import SwiftUI
 
-
 enum Tab: Int {
-       case ChatListView, HomeView, ProfileView
+    case ChatListView, HomeView, ProfileView
+}
+
+class TabController: ObservableObject {
+    @Published var activeTab = Tab.HomeView
+
+    func open(_ tab: Tab) {
+        withAnimation { activeTab = tab }
+    }
 }
 
 struct ContentView: View {
     @EnvironmentObject var model: Model
-    @State private var selection = Tab.ChatListView
+    @StateObject private var tabController = TabController()
     @State private var tabBarVisible = true
     @State private var height = CGFloat.zero
-
+    
     var body: some View {
-        ZStack {
-            NavigationStack {
-                TabView(selection: $selection) {
-                    ChatListView()
-                        .tabItem {
-                            Label("", systemImage: "message")
-                        }.tag(Tab.ChatListView)
-                    HomeView()
-                        .tabItem {
-                            Label("", systemImage: "house.fill")
-                        }.tag(Tab.HomeView)
-                    ProfileView()
-                        .tabItem {
-                            Label("", systemImage: "person")
-                        }.tag(Tab.ProfileView)
-                }
-                .accentColor(.accentColor)
-                .navigationDestination(for: MessagePreview.self) { message in
-                    ChatRoomView()
-                }
+        NavigationStack {
+            TabView(selection: $tabController.activeTab) {
+                ProfileView()
+                    .tag(Tab.ProfileView)
+                HomeView()
+                    .tag(Tab.HomeView)
+                ChatListView()
+                    .tag(Tab.ChatListView)
+                
+            }
+            .environmentObject(tabController)
+            .tabViewStyle(.page(indexDisplayMode: .never))
+            .transition(.slide)
+            .navigationDestination(for: MessagePreview.self) { message in
+                ChatRoomView()
             }
         }
     }
