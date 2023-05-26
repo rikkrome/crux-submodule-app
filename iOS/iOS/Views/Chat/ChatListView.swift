@@ -27,18 +27,15 @@ struct ChatListView: View {
     
     var body: some View {
         VStack {
-            HStack{
+            HStack {
                 Button(action: {
                     tabController.open(.HomeView)
-                }) {Label("", systemImage: "arrow.left")}
+                }) {
+                    Image(systemName: "arrow.left")
+                }
+                .padding()
                 Spacer()
-                Text("Chat")
-                Spacer()
-                Button(action: {
-                    tabController.open(.HomeView)
-                }) {Label("", systemImage: "bell.fill")}
             }
-            .padding()
             List {
                 ForEach(messages, id: \.self) { message in
                     ZStack {
@@ -56,7 +53,7 @@ struct ChatListView: View {
                     }
                 }
             }
-            .listStyle(GroupedListStyle())
+            .listStyle(PlainListStyle())
             .scrollContentBackground(.hidden)
         }
     }

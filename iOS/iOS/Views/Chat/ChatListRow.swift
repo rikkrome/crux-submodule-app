@@ -15,10 +15,7 @@ struct ChatListRow: View {
 
     var body: some View {
         HStack {
-            image
-                .resizable()
-                .frame(width: 50, height: 50)
-                .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
+            ProfileImage(image: image).frame(width: 50, height: 50)
             VStack(alignment: .leading) {
                 HStack {
                     Text(username)
@@ -37,7 +34,7 @@ struct ChatListRow: View {
             Spacer()
         }
         .listRowSeparator(.hidden)
-        .padding(4)
+//        .padding(4)
     }
 }
 

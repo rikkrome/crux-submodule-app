@@ -15,13 +15,17 @@ struct HomeView: View {
                     HStack{
                         Button(action: {
                             tabController.open(.ProfileView)
-                        }) {Label("", systemImage: "person.crop.circle.fill")}
+                        }) {
+                            Image(systemName: "person.fill")
+                        }
                         Spacer()
                         Text("Home")
                         Spacer()
                         Button(action: {
                             tabController.open(.ChatListView)
-                        }) {Label("", systemImage: "message.fill")}
+                        }) {
+                            Image(systemName: "message.fill")
+                        }
                     }
                     .padding()
                     Spacer()

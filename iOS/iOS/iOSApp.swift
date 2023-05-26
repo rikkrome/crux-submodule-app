@@ -10,6 +10,9 @@ import SwiftUI
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         print("Your code here")
+        if #available(iOS 15.0, *) {
+            UITableView.appearance().sectionHeaderTopPadding = 0;
+        }
 //        let scheme = "Dark"
 //        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: scheme == "Dark" ? UIColor.white : UIColor.black]
 //        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: scheme == "Dark" ? UIColor.white : UIColor.black]

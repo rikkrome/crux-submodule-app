@@ -13,49 +13,50 @@ struct ProfileView: View {
         model.view.settings.scheme == "Dark" ? .white : .black
     }
     func placeOrder() { }
-
+    
     var body: some View {
-            VStack {
-                HStack{
-                    Button(action: {
-                        tabController.open(.HomeView)
-                    }) {Label("", systemImage: "gearshape.fill")}
-                    Spacer()
-                    Text("Profile")
-                    Spacer()
-                    Button(action: {
-                        tabController.open(.HomeView)
-                    }) {Label("", systemImage: "arrow.right")}
-                }
-                .padding()
-                ScrollView {
-                    HStack{
-                        Text("Hi \(model.view.profile.user_name) 👋")
-                            .font(.headline)
-                            .fontWeight(.bold)
-                            .padding()
-                        Spacer()
+        VStack {
+            HStack{
+                Menu {
+                    Text("Setting")
+                    Menu {
+                        Button(action: {
+                            model.update(msg: .event(.updateScheme("Light")))
+                        }) {Label("Light", systemImage: "sun.max")}
+                        Button(action: {
+                            model.update(msg: .event(.updateScheme("Dark")))
+                        }) {Label("Dark", systemImage: "moon")}
+                    } label: {
+                        Text("Theme")
                     }
+                } label: {
+                    Image(systemName: "gearshape")
+                }
+                Spacer()
+                Button(action: {
+                    tabController.open(.HomeView)
+                }) {
+                    Image(systemName: "arrow.right")
                 }
             }
-//            .navigationBarItems(
-//                trailing:
-//                    Menu {
-//                        Text("Setting")
-//                        Menu {
-//                            Button(action: {
+            .padding()
+            ScrollView {
+                    VStack {
+                        ProfileImage(image: Image("dalle")).frame(width: 115, height: 115).padding(.top)
+                        HStack {
+                            Text("Romero").font(.title3).fontWeight(.bold)
+                            Button(action: {
 //                                model.update(msg: .event(.updateScheme("Light")))
-//                            }) {Label("Light", systemImage: "sun.max")}
-//                            Button(action: {
-//                                model.update(msg: .event(.updateScheme("Dark")))
-//                            }) {Label("Dark", systemImage: "moon")}
-//                        } label: {
-//                            Text("Theme")
-//                        }
-//                    } label: {
-//                        Label("Settings", systemImage: "gearshape").foregroundColor(text_color)
-//                    }
-//            )
+                            }) {
+                                Image(systemName: "square.and.arrow.up")
+                            }
+                            .buttonStyle(.borderedProminent)
+                            .controlSize(.mini)
+                        }
+                    }
+            }
+            .frame(maxWidth: .infinity)
+        }
     }
 }
 
@@ -65,7 +66,7 @@ struct ProfileView_Previews: PreviewProvider {
             TabView {
                 ProfileView().environmentObject(Model())
             }
-            .tabViewStyle(.page(indexDisplayMode: .always))
+            .tabViewStyle(.page(indexDisplayMode: .never))
         }
     }
 }
